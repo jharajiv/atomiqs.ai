@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Atomiqs.AI — A digital twin of your business processes. Built continuously, used permanently. Discover, Validate, Reinvent."/>
+<meta property="og:title" content="Atomiqs.AI — Atomiq core of enterprise intelligence"/>
+<meta property="og:description" content="Process owners design the work. They rarely see how it actually runs. Atomiqs gives you a live digital twin of your processes."/>
+<meta property="og:type" content="website"/>
+<title>Atomiqs.AI — Atomiq core of enterprise intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:    #0B1120;
+  --ink2:   #141E30;
+  --ink3:   #0F1929;
+  --teal:   #1DB87E;
+  --teal-d: #0F6E4A;
+  --teal-l: #5DDBA9;
+  --blue:   #3B8FE8;
+  --purple: #7B72D8;
+  --amber:  #E8A020;
+  --white:  #FFFFFF;
+  --muted:  rgba(255,255,255,0.38);
+  --muted2: rgba(255,255,255,0.55);
+  --line:   rgba(255,255,255,0.08);
+}
+
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--ink);
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{0%,100%{opacity:.4}50%{opacity:.8}}
+@keyframes pulse-ring{0%{transform:scale(.95);opacity:.7}70%{transform:scale(1.05);opacity:0}100%{transform:scale(.95);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+
+.fade-up{opacity:0;animation:fadeUp .8s cubic-bezier(.22,1,.36,1) forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}
+.d4{animation-delay:.46s}.d5{animation-delay:.58s}.d6{animation-delay:.7s}.d7{animation-delay:.85s}
+
+/* ── LAYOUT ── */
+.container{max-width:1080px;margin:0 auto;padding:0 32px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  background:rgba(11,17,32,.85);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1080px;margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;height:68px;
+}
+.nav-logo svg{height:40px;width:auto}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;
+  letter-spacing:.02em;transition:color .2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  font-size:13px;font-weight:600;color:var(--ink);
+  background:var(--teal);border:none;border-radius:6px;
+  padding:9px 20px;cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .15s;letter-spacing:.01em;
+}
+.nav-cta:hover{background:var(--teal-l);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:.3s}
+
+/* ── HERO ── */
+.hero{
+  padding:140px 0 80px;
+  position:relative;overflow:hidden;
+  min-height:100vh;display:flex;align-items:center;
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.hero-blob{
+  position:absolute;border-radius:50%;filter:blur(80px);
+}
+.blob1{width:600px;height:600px;top:-100px;right:-100px;background:radial-gradient(circle,rgba(29,184,126,.12),transparent 70%)}
+.blob2{width:500px;height:500px;bottom:-80px;left:-80px;background:radial-gradient(circle,rgba(59,143,232,.1),transparent 70%)}
+.blob3{width:300px;height:300px;top:40%;left:40%;background:radial-gradient(circle,rgba(123,114,216,.08),transparent 70%)}
+
+/* Dot grid */
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:36px 36px;
+}
+
+.hero-inner{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 32px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:28px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--teal)}
+
+.hero-h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(36px,5.5vw,72px);
+  font-weight:700;line-height:1.05;letter-spacing:-.03em;
+  max-width:800px;margin-bottom:12px;
+}
+.hero-h1 em{
+  font-style:italic;font-weight:300;
+  color:transparent;
+  background:linear-gradient(135deg,var(--teal-l),var(--blue));
+  -webkit-background-clip:text;background-clip:text;
+}
+
+.hero-sub{
+  font-size:clamp(15px,1.6vw,18px);color:rgba(255,255,255,.45);
+  line-height:1.7;max-width:600px;margin-bottom:44px;
+  font-style:italic;font-weight:300;
+}
+
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:64px}
+.btn-primary{
+  font-size:14px;font-weight:600;color:var(--ink);
+  background:var(--teal);border:none;border-radius:8px;
+  padding:14px 28px;cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 0 0 0 rgba(29,184,126,.4);
+  animation:glow 3s ease-in-out infinite;
+}
+.btn-primary:hover{background:var(--teal-l);transform:translateY(-2px);box-shadow:0 8px 24px rgba(29,184,126,.35)}
+.btn-secondary{
+  font-size:14px;font-weight:500;color:var(--white);
+  background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:8px;
+  padding:13px 28px;cursor:pointer;text-decoration:none;
+  transition:border-color .2s,background .2s;
+}
+.btn-secondary:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.05)}
+
+/* Stat strip */
+.stat-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  background:var(--ink2);max-width:680px;
+}
+.stat-item{
+  padding:22px 26px;border-right:1px solid var(--line);
+}
+.stat-item:last-child{border-right:none}
+.stat-num{
+  font-family:'Fraunces',serif;font-size:clamp(22px,3vw,32px);
+  font-weight:600;color:var(--teal);line-height:1;margin-bottom:6px;
+}
+.stat-label{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ── PROBLEM ── */
+.section-problem{padding:100px 0}
+.section-eyebrow{
+  font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::before{content:'';width:24px;height:1px;background:var(--teal)}
+.section-title{
+  font-family:'Fraunces',serif;font-size:clamp(26px,3.5vw,42px);
+  font-weight:600;line-height:1.15;letter-spacing:-.025em;
+  max-width:600px;margin-bottom:48px;
+}
+.section-title span{color:var(--teal)}
+
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prob-card{
+  background:var(--ink2);border:1px solid var(--line);border-radius:12px;
+  padding:28px 24px;position:relative;overflow:hidden;
+  transition:border-color .25s,transform .25s;
+}
+.prob-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.prob-card.c1::before{background:var(--teal)}
+.prob-card.c2::before{background:var(--amber)}
+.prob-card.c3::before{background:var(--blue)}
+.prob-card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-3px)}
+
+.prob-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+}
+.prob-card.c1 .prob-icon{background:rgba(29,184,126,.1)}
+.prob-card.c2 .prob-icon{background:rgba(232,160,32,.1)}
+.prob-card.c3 .prob-icon{background:rgba(59,143,232,.1)}
+.prob-icon svg{width:20px;height:20px}
+.prob-card.c1 .prob-icon svg{stroke:var(--teal)}
+.prob-card.c2 .prob-icon svg{stroke:var(--amber)}
+.prob-card.c3 .prob-icon svg{stroke:var(--blue)}
+.prob-card-title{font-size:14px;font-weight:600;margin-bottom:8px}
+.prob-card-body{font-size:13px;line-height:1.7;color:rgba(255,255,255,.5)}
+
+/* ── SOLUTION ── */
+.section-solution{padding:100px 0;background:linear-gradient(180deg,var(--ink) 0%,var(--ink3) 100%)}
+.sol-layout{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
+
+.step-list{display:flex;flex-direction:column;gap:4px}
+.step-card{
+  display:flex;gap:20px;padding:22px 24px;border-radius:12px;
+  border:1px solid transparent;transition:background .2s,border-color .2s;cursor:default;
+}
+.step-card:hover{background:var(--ink2);border-color:var(--line)}
+.step-num{
+  font-family:'Fraunces',serif;font-size:32px;font-weight:300;font-style:italic;
+  line-height:1;flex-shrink:0;width:36px;color:rgba(255,255,255,.18);padding-top:2px;
+}
+.step-title{font-size:15px;font-weight:600;margin-bottom:6px}
+.step-body{font-size:13px;line-height:1.7;color:rgba(255,255,255,.5)}
+.step-tag{
+  display:inline-block;margin-top:10px;font-size:10px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;
+}
+.step-card:nth-child(1) .step-tag{background:rgba(29,184,126,.12);color:var(--teal)}
+.step-card:nth-child(2) .step-tag{background:rgba(123,114,216,.12);color:var(--purple)}
+.step-card:nth-child(3) .step-tag{background:rgba(59,143,232,.12);color:var(--blue)}
+
+.loop-panel{
+  background:var(--ink2);border:1px solid var(--line);border-radius:16px;
+  padding:28px;position:sticky;top:96px;
+}
+.loop-panel-kicker{
+  font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;text-align:center;
+}
+
+/* integrations strip */
+.integrations-strip{
+  margin-top:32px;padding:16px 22px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:10px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.int-label{font-size:11px;color:var(--muted);flex-shrink:0;margin-right:4px}
+.int-tag{
+  font-size:11px;font-weight:500;color:rgba(255,255,255,.6);
+  background:rgba(255,255,255,.06);border:1px solid var(--line);
+  border-radius:20px;padding:4px 12px;
+}
+
+/* ── BUILT TO ENHANCE ── */
+.section-enhance{padding:100px 0}
+.enhance-intro{
+  font-size:clamp(16px,1.8vw,20px);color:rgba(255,255,255,.5);
+  line-height:1.7;max-width:700px;margin-bottom:56px;
+  font-weight:300;
+}
+.enhance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.enhance-card{
+  background:var(--ink2);border:1px solid var(--line);border-radius:14px;
+  padding:32px 26px;transition:border-color .25s,transform .25s;
+}
+.enhance-card:hover{border-color:rgba(255,255,255,.18);transform:translateY(-4px)}
+.enhance-icon{
+  width:44px;height:44px;border-radius:10px;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+}
+.enhance-icon svg{width:22px;height:22px}
+.enhance-category{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:.05em;text-transform:uppercase}
+.enhance-title{font-size:15px;font-weight:600;margin-bottom:10px}
+.enhance-we{
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);margin:14px 0 8px;padding-top:14px;border-top:1px solid var(--line);
+}
+.enhance-body{font-size:13px;line-height:1.7;color:rgba(255,255,255,.5)}
+
+/* ── GET STARTED / CTA ── */
+.section-cta{
+  padding:80px 0;
+  background:linear-gradient(135deg,rgba(29,184,126,.08) 0%,rgba(59,143,232,.06) 100%);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.cta-inner{
+  max-width:680px;margin:0 auto;text-align:center;padding:0 32px;
+}
+.cta-eyebrow{
+  font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:16px;
+}
+.cta-title{
+  font-family:'Fraunces',serif;font-size:clamp(28px,4vw,48px);
+  font-weight:700;line-height:1.1;letter-spacing:-.025em;margin-bottom:14px;
+}
+.cta-sub{font-size:15px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:36px}
+.cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+
+/* ── CONTACT ── */
+.section-contact{padding:100px 0}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.contact-info h3{
+  font-family:'Fraunces',serif;font-size:clamp(22px,3vw,34px);
+  font-weight:600;line-height:1.2;letter-spacing:-.02em;margin-bottom:16px;
+}
+.contact-info p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:28px}
+.contact-detail{
+  display:flex;align-items:center;gap:12px;
+  font-size:13px;color:rgba(255,255,255,.6);margin-bottom:12px;
+}
+.contact-detail svg{width:16px;height:16px;stroke:var(--teal);flex-shrink:0}
+.contact-detail a{color:var(--teal-l);text-decoration:none}
+.contact-detail a:hover{text-decoration:underline}
+
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.form-input,.form-textarea,.form-select{
+  background:var(--ink2);border:1px solid var(--line);border-radius:8px;
+  padding:12px 16px;font-size:14px;color:var(--white);font-family:'DM Sans',sans-serif;
+  outline:none;transition:border-color .2s,box-shadow .2s;width:100%;
+}
+.form-input:focus,.form-textarea:focus,.form-select:focus{
+  border-color:var(--teal);box-shadow:0 0 0 3px rgba(29,184,126,.12);
+}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,.25)}
+.form-textarea{resize:vertical;min-height:120px;line-height:1.6}
+.form-select option{background:var(--ink2)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+.form-submit{
+  font-size:14px;font-weight:600;color:var(--ink);
+  background:var(--teal);border:none;border-radius:8px;
+  padding:14px 28px;cursor:pointer;
+  transition:background .2s,transform .15s;margin-top:6px;
+}
+.form-submit:hover{background:var(--teal-l);transform:translateY(-1px)}
+.form-success{
+  display:none;text-align:center;padding:28px;
+  background:rgba(29,184,126,.08);border:1px solid rgba(29,184,126,.25);
+  border-radius:12px;
+}
+.form-success svg{width:40px;height:40px;stroke:var(--teal);margin-bottom:12px}
+.form-success h4{font-size:16px;font-weight:600;margin-bottom:6px}
+.form-success p{font-size:13px;color:var(--muted)}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--line);
+  padding:40px 0;
+}
+.footer-inner{
+  max-width:1080px;margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;
+}
+.footer-logo svg{height:32px;width:auto;opacity:.7}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.25)}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);margin:0}
+
+/* ── MOBILE NAV MENU ── */
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:99;
+  background:rgba(11,17,32,.98);backdrop-filter:blur(16px);
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  padding:32px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:20px;font-weight:500;color:var(--white);text-decoration:none}
+.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;cursor:pointer}
+.mobile-close svg{width:28px;height:28px;stroke:var(--white)}
+
+/* ── OBJECTION BUSTERS ── */
+.section-objections{padding:80px 0;background:var(--ink)}
+.obj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.obj-card{
+  border:1px solid var(--line);border-radius:14px;padding:28px 24px;
+  background:var(--ink2);position:relative;overflow:hidden;
+  transition:border-color .25s,transform .25s;
+}
+.obj-card:hover{border-color:rgba(255,255,255,.18);transform:translateY(-3px)}
+.obj-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--teal),var(--blue));opacity:.5;
+}
+.obj-card:nth-child(2)::after{background:linear-gradient(90deg,var(--blue),var(--purple))}
+.obj-card:nth-child(3)::after{background:linear-gradient(90deg,var(--purple),var(--teal))}
+.obj-myth{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:10px;
+}
+.obj-q{font-size:14px;font-weight:600;line-height:1.5;color:rgba(255,255,255,.7);margin-bottom:16px;font-style:italic}
+.obj-divider{height:1px;background:var(--line);margin-bottom:16px}
+.obj-a{font-size:13px;line-height:1.75;color:rgba(255,255,255,.5)}
+.obj-a strong{color:rgba(255,255,255,.8)}
+
+@media(max-width:860px){.obj-grid{grid-template-columns:1fr}}
+
+/* ── FAQ ── */
+.section-faq{padding:100px 0;background:var(--ink3)}
+.faq-intro{font-size:15px;color:rgba(255,255,255,.45);line-height:1.7;max-width:560px;margin-bottom:52px;font-weight:300}
+.faq-list{max-width:780px;display:flex;flex-direction:column;gap:2px}
+.faq-item{
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  background:var(--ink2);transition:border-color .25s;
+}
+.faq-item.open{border-color:rgba(29,184,126,.3)}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:22px 26px;cursor:pointer;user-select:none;
+}
+.faq-q-text{font-size:15px;font-weight:600;line-height:1.4}
+.faq-icon{
+  flex-shrink:0;width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s,transform .3s;
+}
+.faq-item.open .faq-icon{background:rgba(29,184,126,.12);border-color:rgba(29,184,126,.4);transform:rotate(45deg)}
+.faq-icon svg{width:14px;height:14px;stroke:var(--muted2)}
+.faq-item.open .faq-icon svg{stroke:var(--teal)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(.22,1,.36,1),padding .3s;
+  padding:0 26px;
+}
+.faq-item.open .faq-a{max-height:400px;padding:0 26px 24px}
+.faq-a p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.55)}
+.faq-a p + p{margin-top:10px}
+.faq-a strong{color:rgba(255,255,255,.8);font-weight:600}
+.faq-tag{
+  display:inline-block;margin-bottom:10px;font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;
+  background:rgba(29,184,126,.1);color:var(--teal);
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .prob-grid{grid-template-columns:1fr}
+  .sol-layout{grid-template-columns:1fr}
+  .loop-panel{position:static;display:none}
+  .enhance-grid{grid-template-columns:1fr}
+  .contact-layout{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .container{padding:0 20px}
+  .hero-inner{padding:0 20px}
+  .stat-strip{grid-template-columns:1fr;max-width:100%}
+  .stat-item{border-right:none;border-bottom:1px solid var(--line)}
+  .stat-item:last-child{border-bottom:none}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <svg viewBox="0 0 320 76" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="la2" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+            <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(29,184,126,.7)"/>
+          </marker>
+        </defs>
+        <path d="M72,26 C65,14 44,2 28,2 C10,2 2,16 2,38 C2,60 10,74 28,74 C44,74 65,56 72,50 Z"
+              fill="rgba(29,184,126,.10)" stroke="#1DB87E" stroke-width="1.6"/>
+        <path d="M72,28 C66,18 50,8 36,8 C20,8 8,22 8,38 C8,54 20,68 36,68 C50,68 66,52 72,48 Z"
+              fill="none" stroke="#1DB87E" stroke-width="0.6" stroke-dasharray="4 3" stroke-opacity=".32"/>
+        <path d="M72,26 C79,14 100,2 116,2 C134,2 142,16 142,38 C142,60 134,74 116,74 C100,74 79,56 72,50 Z"
+              fill="rgba(59,143,232,.10)" stroke="#3B8FE8" stroke-width="1.6"/>
+        <path d="M72,28 C78,18 94,8 108,8 C124,8 136,22 136,38 C136,54 124,68 108,68 C94,68 78,52 72,48 Z"
+              fill="none" stroke="#3B8FE8" stroke-width="0.6" stroke-dasharray="4 3" stroke-opacity=".32"/>
+        <ellipse cx="72" cy="38" rx="12" ry="18" fill="rgba(123,114,216,.18)" stroke="#7B72D8" stroke-width="1.6"/>
+        <ellipse cx="72" cy="38" rx="7"  ry="11" fill="none" stroke="#7B72D8" stroke-width="0.6" stroke-dasharray="4 3" stroke-opacity=".32"/>
+        <ellipse cx="36"  cy="38" rx="24" ry="20" fill="rgba(11,17,32,.85)"/>
+        <ellipse cx="108" cy="38" rx="24" ry="20" fill="rgba(11,17,32,.85)"/>
+        <path d="M58,8  Q66,4 69,24" fill="none" stroke="#1DB87E" stroke-width="1" stroke-opacity=".6" marker-end="url(#la2)"/>
+        <path d="M75,24 Q78,4 86,8"  fill="none" stroke="#3B8FE8" stroke-width="1" stroke-opacity=".6" marker-end="url(#la2)"/>
+        <text x="156" y="36" font-family="Georgia,serif" font-size="24" font-weight="400"
+              fill="rgba(255,255,255,.92)" letter-spacing="0.5">atomiqs.ai</text>
+        <text x="157" y="54" font-family="Georgia,serif" font-size="8.5" font-weight="400"
+              font-style="italic" fill="rgba(255,255,255,.32)" letter-spacing="1.2">Atomiq core of enterprise intelligence</text>
+      </svg>
+    </div>
+    <div class="nav-links">
+      <a href="#challenge">The Challenge</a>
+      <a href="#solution">Solution</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#contact">Get Started</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">
+    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <a href="#challenge" onclick="toggleMenu()">The Challenge</a>
+  <a href="#solution" onclick="toggleMenu()">Solution</a>
+  <a href="#ecosystem" onclick="toggleMenu()">Ecosystem</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a class="btn-primary" href="#contact" onclick="toggleMenu()">Get Started</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-blob blob3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow fade-up d1">Business &amp; transformation leaders · 2026</div>
+    <h1 class="hero-h1 fade-up d2">
+      A live digital twin of<br>
+      <em>how your business actually runs.</em>
+    </h1>
+    <p class="hero-sub fade-up d3">
+      Not the process on paper. The process in reality — continuously captured, structured, and ready to power every programme, AI investment, and change initiative you run.
+    </p>
+    <div class="hero-actions fade-up d4">
+      <a class="btn-primary" href="#contact">Book a two-week pilot</a>
+      <a class="btn-secondary" href="#solution">See how it works</a>
+    </div>
+    <div class="stat-strip fade-up d5">
+      <div class="stat-item">
+        <div class="stat-num">30–40%</div>
+        <div class="stat-label">of programme effort spent on rediscovery — every time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">~80%</div>
+        <div class="stat-label">of process knowledge locked in static documents</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0</div>
+        <div class="stat-label">tools give a live view of design vs reality today</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CHALLENGE -->
+<section class="section-problem" id="challenge">
+  <div class="container">
+    <div class="section-eyebrow fade-up d1">The challenge</div>
+    <h2 class="section-title fade-up d2">Three problems that cost you<br><span>every single initiative</span></h2>
+    <div class="prob-grid">
+      <div class="prob-card c1 fade-up d3">
+        <div class="prob-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/>
+            <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/>
+            <line x1="1" y1="1" x2="23" y2="23"/>
+          </svg>
+        </div>
+        <div class="prob-card-title">Design vs reality gap</div>
+        <div class="prob-card-body">Process owners are accountable for outcomes they cannot see. The process designed and the process actually running are not the same — and nobody in leadership has a clear view of by how much.</div>
+      </div>
+      <div class="prob-card c2 fade-up d4">
+        <div class="prob-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+          </svg>
+        </div>
+        <div class="prob-card-title">Every change starts over</div>
+        <div class="prob-card-body">Every major initiative — upgrade, merger, regulation, AI rollout — begins with weeks of expensive rediscovery. Institutional knowledge never compounds. The same ground covered every time.</div>
+      </div>
+      <div class="prob-card c3 fade-up d5">
+        <div class="prob-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <div class="prob-card-title">Innovation under-delivers</div>
+        <div class="prob-card-body">AI agents and copilots deployed without a structured understanding of the processes underneath operate on incomplete context — producing unreliable and ungovernable results.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOLUTION -->
+<section class="section-solution" id="solution">
+  <div class="container">
+    <div class="section-eyebrow fade-up d1">What changes</div>
+    <h2 class="section-title fade-up d2">A digital twin of your processes —<br><span>built continuously, used permanently</span></h2>
+
+    <div class="sol-layout">
+      <div>
+        <div class="step-list">
+          <div class="step-card fade-up d2">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-title">Discover — Full transparency in design vs reality</div>
+              <div class="step-body">Every process — regardless of systems, tools, or workflows — captured automatically into a structured, living picture. Process owners see what is actually happening vs what was designed. Benchmarked. Owned. Governed.</div>
+              <span class="step-tag">Process transparency · Atomiq Twin</span>
+            </div>
+          </div>
+          <div class="step-card fade-up d3">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-title">Validate — Move fast when things need to change</div>
+              <div class="step-body">Know exactly what is affected before a programme starts. Auto-generate test coverage from the process itself. Understand full change impact in hours, not weeks. Stop rebuilding institutional knowledge from scratch.</div>
+              <span class="step-tag">Change with confidence</span>
+            </div>
+          </div>
+          <div class="step-card fade-up d4">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">Reinvent — Unlock real value from AI and innovation</div>
+              <div class="step-body">With a live process foundation in place, every AI investment — agents, copilots, automation — has the business context it needs to deliver. Reimagine how work runs. Make your innovation spend produce outcomes, not experiments.</div>
+              <span class="step-tag">Reinvent &amp; innovate · Atomiq Core</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="integrations-strip fade-up d5">
+          <span class="int-label">Empowers your existing</span>
+          <span class="int-tag">Any ERP / system</span>
+          <span class="int-tag">MS Copilot</span>
+          <span class="int-tag">Agentforce</span>
+          <span class="int-tag">SAP Joule</span>
+          <span class="int-tag">Teams · Slack</span>
+          <span class="int-tag">Any orchestrator</span>
+        </div>
+      </div>
+
+      <!-- Loop diagram -->
+      <div class="loop-panel fade-up d2">
+        <div class="loop-panel-kicker">The platform loop</div>
+        <svg width="100%" viewBox="0 0 288 460" xmlns="http://www.w3.org/2000/svg">
+          <!-- Personas -->
+          <circle cx="52"  cy="20" r="9" fill="none" stroke="#1DB87E" stroke-width="1.3"/>
+          <path d="M40 38 Q52 30 64 38" fill="none" stroke="#1DB87E" stroke-width="1.3" stroke-linecap="round"/>
+          <text font-family="DM Sans,sans-serif" font-size="8.5" x="52" y="52" text-anchor="middle" fill="rgba(255,255,255,.5)">Process owners</text>
+          <circle cx="144" cy="20" r="9" fill="none" stroke="#7B72D8" stroke-width="1.3"/>
+          <path d="M132 38 Q144 30 156 38" fill="none" stroke="#7B72D8" stroke-width="1.3" stroke-linecap="round"/>
+          <text font-family="DM Sans,sans-serif" font-size="8.5" x="144" y="52" text-anchor="middle" fill="rgba(255,255,255,.5)">Business users</text>
+          <circle cx="236" cy="20" r="9" fill="none" stroke="#3B8FE8" stroke-width="1.3"/>
+          <path d="M224 38 Q236 30 248 38" fill="none" stroke="#3B8FE8" stroke-width="1.3" stroke-linecap="round"/>
+          <text font-family="DM Sans,sans-serif" font-size="8.5" x="236" y="52" text-anchor="middle" fill="rgba(255,255,255,.5)">Digital / AI enablers</text>
+          <!-- Network graph -->
+          <g opacity=".18" stroke="#7B72D8" stroke-width=".7" fill="none">
+            <line x1="20" y1="74" x2="70" y2="64"/><line x1="70" y1="64" x2="120" y2="72"/>
+            <line x1="120" y1="72" x2="168" y2="62"/><line x1="168" y1="62" x2="218" y2="70"/>
+            <line x1="218" y1="70" x2="268" y2="62"/>
+            <line x1="70" y1="64" x2="95" y2="82"/><line x1="95" y1="82" x2="120" y2="72"/>
+            <line x1="168" y1="62" x2="144" y2="82"/><line x1="218" y1="70" x2="144" y2="82"/>
+          </g>
+          <g fill="#7B72D8">
+            <circle cx="20"  cy="74" r="2.5" opacity=".45"/>
+            <circle cx="70"  cy="64" r="3.5" opacity=".65"/>
+            <circle cx="120" cy="72" r="2.5" opacity=".5"/>
+            <circle cx="144" cy="82" r="4.5" opacity=".8"/>
+            <circle cx="168" cy="62" r="2.5" opacity=".5"/>
+            <circle cx="218" cy="70" r="3"   opacity=".6"/>
+            <circle cx="268" cy="62" r="3"   opacity=".6"/>
+            <circle cx="95"  cy="82" r="2"   opacity=".4"/>
+          </g>
+          <rect x="84" y="90" width="120" height="17" rx="8.5" fill="rgba(123,114,216,.12)" stroke="rgba(123,114,216,.35)" stroke-width=".5"/>
+          <text font-family="DM Sans,sans-serif" font-size="8" font-weight="600" x="144" y="103" text-anchor="middle" fill="#7B72D8">AtomIQ · Intelligence graph</text>
+          <!-- Left lobe -->
+          <path d="M144,174 C130,150 88,110 58,110 C30,110 8,132 8,156 C8,180 30,202 58,202 C88,202 130,178 144,182 Z"
+                fill="rgba(29,184,126,.08)" stroke="#1DB87E" stroke-width="1.3"/>
+          <!-- Right lobe -->
+          <path d="M144,174 C158,150 200,110 230,110 C258,110 280,132 280,156 C280,180 258,202 230,202 C200,202 158,178 144,182 Z"
+                fill="rgba(59,143,232,.08)" stroke="#3B8FE8" stroke-width="1.3"/>
+          <!-- Validate oval -->
+          <ellipse cx="144" cy="178" rx="26" ry="38" fill="rgba(123,114,216,.15)" stroke="#7B72D8" stroke-width="1.3"/>
+          <!-- Dark discs -->
+          <ellipse cx="68"  cy="156" rx="48" ry="38" fill="rgba(11,17,32,.8)"/>
+          <ellipse cx="220" cy="156" rx="48" ry="38" fill="rgba(11,17,32,.8)"/>
+          <!-- Labels -->
+          <text font-family="DM Sans,sans-serif" font-size="7.5" x="68" y="137" text-anchor="middle" fill="rgba(29,184,126,.6)">01</text>
+          <text font-family="Georgia,serif" font-size="12" x="68" y="152" text-anchor="middle" fill="#FFFFFF">Discover</text>
+          <text font-family="DM Sans,sans-serif" font-size="6.5" x="68" y="163" text-anchor="middle" fill="rgba(29,184,126,.65)">powered by</text>
+          <text font-family="Georgia,serif" font-size="10.5" x="68" y="176" text-anchor="middle" fill="#1DB87E">Atomiq Twin</text>
+          <text font-family="DM Sans,sans-serif" font-size="7.5" x="144" y="150" text-anchor="middle" fill="rgba(123,114,216,.7)">02</text>
+          <text font-family="Georgia,serif" font-size="11" x="144" y="165" text-anchor="middle" fill="#FFFFFF">Validate</text>
+          <text font-family="DM Sans,sans-serif" font-size="7" x="144" y="179" text-anchor="middle" fill="rgba(123,114,216,.7)">Test · Prove</text>
+          <text font-family="DM Sans,sans-serif" font-size="7.5" x="220" y="137" text-anchor="middle" fill="rgba(59,143,232,.6)">03</text>
+          <text font-family="Georgia,serif" font-size="12" x="220" y="152" text-anchor="middle" fill="#FFFFFF">Reinvent</text>
+          <text font-family="DM Sans,sans-serif" font-size="6.5" x="220" y="163" text-anchor="middle" fill="rgba(59,143,232,.65)">powered by</text>
+          <text font-family="Georgia,serif" font-size="10.5" x="220" y="176" text-anchor="middle" fill="#3B8FE8">Atomiq Core</text>
+          <!-- Rim verbs -->
+          <text font-family="DM Sans,sans-serif" font-size="7.5" x="22" y="124" text-anchor="middle" fill="rgba(29,184,126,.55)">Create</text>
+          <text font-family="DM Sans,sans-serif" font-size="7.5" x="22" y="192" text-anchor="middle" fill="rgba(29,184,126,.55)">Benchmark</text>
+          <text font-family="DM Sans,sans-serif" font-size="7" x="266" y="124" text-anchor="middle" fill="rgba(59,143,232,.55)">Operate</text>
+          <text font-family="DM Sans,sans-serif" font-size="7.5" x="266" y="192" text-anchor="middle" fill="rgba(59,143,232,.55)">Innovate</text>
+          <!-- Intelligence feeds -->
+          <text font-family="DM Sans,sans-serif" font-size="7.5" x="144" y="222" text-anchor="middle" fill="rgba(255,255,255,.3)">Intelligence feeds from</text>
+          <g>
+            <rect x="4"   y="230" width="64" height="15" rx="7" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
+            <text font-family="DM Sans,sans-serif" font-size="7" x="36" y="241" text-anchor="middle" fill="rgba(255,255,255,.5)">Any ERP / system</text>
+            <rect x="74"  y="230" width="64" height="15" rx="7" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
+            <text font-family="DM Sans,sans-serif" font-size="7" x="106" y="241" text-anchor="middle" fill="rgba(255,255,255,.5)">Docs &amp; SOPs</text>
+            <rect x="144" y="230" width="64" height="15" rx="7" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
+            <text font-family="DM Sans,sans-serif" font-size="7" x="176" y="241" text-anchor="middle" fill="rgba(255,255,255,.5)">Teams / Slack</text>
+            <rect x="214" y="230" width="70" height="15" rx="7" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
+            <text font-family="DM Sans,sans-serif" font-size="7" x="249" y="241" text-anchor="middle" fill="rgba(255,255,255,.5)">KPIs · benchmarks</text>
+          </g>
+          <!-- Agentic platforms -->
+          <text font-family="DM Sans,sans-serif" font-size="7.5" x="144" y="268" text-anchor="middle" fill="rgba(255,255,255,.3)">Empowers agentic AI platforms</text>
+          <g>
+            <rect x="14"  y="276" width="56" height="15" rx="7" fill="rgba(29,184,126,.08)" stroke="rgba(29,184,126,.25)" stroke-width=".5"/>
+            <text font-family="DM Sans,sans-serif" font-size="7" x="42" y="287" text-anchor="middle" fill="rgba(29,184,126,.7)">MS Copilot</text>
+            <rect x="76"  y="276" width="64" height="15" rx="7" fill="rgba(29,184,126,.08)" stroke="rgba(29,184,126,.25)" stroke-width=".5"/>
+            <text font-family="DM Sans,sans-serif" font-size="7" x="108" y="287" text-anchor="middle" fill="rgba(29,184,126,.7)">Agentforce</text>
+            <rect x="146" y="276" width="56" height="15" rx="7" fill="rgba(29,184,126,.08)" stroke="rgba(29,184,126,.25)" stroke-width=".5"/>
+            <text font-family="DM Sans,sans-serif" font-size="7" x="174" y="287" text-anchor="middle" fill="rgba(29,184,126,.7)">SAP Joule</text>
+            <rect x="208" y="276" width="70" height="15" rx="7" fill="rgba(29,184,126,.08)" stroke="rgba(29,184,126,.25)" stroke-width=".5"/>
+            <text font-family="DM Sans,sans-serif" font-size="7" x="243" y="287" text-anchor="middle" fill="rgba(29,184,126,.7)">Any orchestrator</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OBJECTION BUSTERS -->
+<section class="section-objections">
+  <div class="container">
+    <div class="section-eyebrow fade-up d1">Why Atomiqs</div>
+    <h2 class="section-title fade-up d2">Questions we hear in<br><span>every first conversation</span></h2>
+    <div class="obj-grid">
+      <div class="obj-card fade-up d3">
+        <div class="obj-myth">Common assumption</div>
+        <div class="obj-q">"Can't I just feed my process documents into an AI model and get the same result?"</div>
+        <div class="obj-divider"></div>
+        <div class="obj-a">You'd be giving the AI your <strong>designed</strong> process — not the live one. Atomiqs actively discovers what is actually running across your systems and keeps that picture current. Static files can't close that gap.</div>
+      </div>
+      <div class="obj-card fade-up d4">
+        <div class="obj-myth">Common assumption</div>
+        <div class="obj-q">"SAP BDC is coming with a knowledge layer — do I need anything beyond that?"</div>
+        <div class="obj-divider"></div>
+        <div class="obj-a">SAP BDC covers the SAP ecosystem. Most enterprises run <strong>40–60+ systems</strong>. Atomiqs covers the full landscape and works alongside SAP via A2A — handling everything SAP cannot reach.</div>
+      </div>
+      <div class="obj-card fade-up d5">
+        <div class="obj-myth">Common assumption</div>
+        <div class="obj-q">"We're not on an ERP — we run on spreadsheets and manual processes. Is this for us?"</div>
+        <div class="obj-divider"></div>
+        <div class="obj-a">This is where the value is <strong>highest</strong>. Manual operations are where process knowledge is most invisible — locked in people's heads. Atomiqs captures how work runs regardless of the tools underneath.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BUILT TO ENHANCE -->
+<section class="section-enhance" id="ecosystem">
+  <div class="container">
+    <div class="section-eyebrow fade-up d1">Built to enhance — not replace</div>
+    <h2 class="section-title fade-up d2">We make your existing<br><span>investments significantly more powerful</span></h2>
+    <p class="enhance-intro fade-up d3">You have already invested in best-in-class tools. We make each of them significantly more powerful by adding the one layer they are missing — a live, structured understanding of your business processes.</p>
+    <div class="enhance-grid">
+      <div class="enhance-card fade-up d3">
+        <div class="enhance-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1DB87E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <div class="enhance-category">Process mining tools</div>
+        <div class="enhance-title">Celonis, Signavio &amp; others</div>
+        <div class="enhance-body">Surface how work flows and where value leaks.</div>
+        <div class="enhance-we">We extend their reach</div>
+        <div class="enhance-body">We elevate mined output into living business process models — with ownership, SOPs, and benchmarks attached — then activate them directly into operations so insights never stop at a report.</div>
+      </div>
+      <div class="enhance-card fade-up d4">
+        <div class="enhance-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7B72D8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <div class="enhance-category">AI copilots &amp; agents</div>
+        <div class="enhance-title">Copilot, Agentforce, Joule &amp; others</div>
+        <div class="enhance-body">Bring powerful AI interfaces to your workforce.</div>
+        <div class="enhance-we">We become their context engine</div>
+        <div class="enhance-body">We publish process design, SOPs, and operational knowledge as MCP skills — so existing copilots gain genuine business understanding and produce governed, auditable outcomes.</div>
+      </div>
+      <div class="enhance-card fade-up d5">
+        <div class="enhance-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3B8FE8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+        </div>
+        <div class="enhance-category">Testing &amp; change tools</div>
+        <div class="enhance-title">Tricentis, Worksoft &amp; others</div>
+        <div class="enhance-body">Accelerate test execution and release quality.</div>
+        <div class="enhance-we">We feed them better inputs</div>
+        <div class="enhance-body">We generate complete process-derived test steps directly from the intelligence graph — so testing tools start from full coverage, not guesswork, grounded in real process knowledge.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="section-faq" id="faq">
+  <div class="container">
+    <div class="section-eyebrow fade-up d1">Common questions</div>
+    <h2 class="section-title fade-up d2">Things people ask us<br><span>before they sign up</span></h2>
+    <p class="faq-intro fade-up d3">Honest answers — because the right fit matters more than a quick sale.</p>
+    <div class="faq-list">
+
+      <!-- Q1: What is it — core value prop -->
+      <div class="faq-item fade-up d2">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What exactly does Atomiqs do — in one sentence?</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-tag">Core value prop</span>
+          <p>We build a <strong>live digital twin of your enterprise processes</strong> — not the version documented in Visio or SharePoint, but what is actually happening across your systems, teams, and workflows — and we keep it continuously current so every programme, AI initiative, and change decision starts from reality, not guesswork.</p>
+        </div>
+      </div>
+
+      <!-- Q2: vs General AI — the "just dump files" objection -->
+      <div class="faq-item fade-up d3">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">I already use Claude, ChatGPT, or Copilot. Can't I just upload my process docs and get the same thing?</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-tag">vs General AI</span>
+          <p>LLMs are exceptional at reasoning over content you give them. The problem is <em>what</em> you give them. <strong>Uploading documents gives the AI your designed process — not the one actually running.</strong> The gap between those two is exactly where cost, risk, and failed initiatives live.</p>
+          <p>Atomiqs doesn't read static documents — it <strong>actively discovers</strong> what is happening across your live systems, structures it into a continuously updated intelligence graph, and makes that context available to your AI tools. So Claude, Copilot, or any agent you deploy gets grounded, governed business understanding — not a stale file snapshot.</p>
+        </div>
+      </div>
+
+      <!-- Q3: vs SAP BDC — system-specific coverage -->
+      <div class="faq-item fade-up d4">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">We run SAP and they're building a Business Data Cloud with a knowledge layer. Do we still need Atomiqs?</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-tag">vs SAP BDC</span>
+          <p>SAP's Business Data Cloud is a genuinely promising direction — and we welcome it. But it is still evolving, and by design it covers SAP's own ecosystem. <strong>The average enterprise runs 40–60+ systems.</strong> SAP BDC won't cover your non-SAP workflows, legacy tools, Teams conversations, or the end-to-end process that cuts across all of them.</p>
+          <p>If you prefer to anchor on SAP BDC, that works well — we connect via A2A communication so SAP handles its own context and work execution, while Atomiqs covers the rest of your landscape and delivers last-mile process intelligence SAP cannot reach. <strong>SAP goes deep inside its ecosystem. Atomiqs covers the full enterprise picture.</strong></p>
+        </div>
+      </div>
+
+      <!-- Q4: vs Process mining — insight vs activation -->
+      <div class="faq-item fade-up d5">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">We already have a process mining tool like Celonis or Signavio. Isn't that enough?</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-tag">vs Process mining</span>
+          <p>Process mining excels at surfacing <em>how</em> event-log data flows and <em>where</em> value leaks — but the output is a dashboard or report. <strong>It rarely becomes an owned, governed, actionable asset the wider business can work from.</strong> Insights stay with analysts and stop at a slide.</p>
+          <p>Atomiqs takes mined output further — elevating it into a living process model with ownership, SOPs, benchmarks, and change impact attached, then activating it directly into your programmes and AI tooling. We extend what you already have rather than replace it.</p>
+        </div>
+      </div>
+
+      <!-- Q5: No ERP / manual-heavy — new question -->
+      <div class="faq-item fade-up d6">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">We don't use an ERP — our operations are largely manual or spreadsheet-driven. Is Atomiqs still relevant for us?</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-tag">Manual &amp; non-ERP environments</span>
+          <p>Yes — and arguably this is where the value is highest. <strong>Manual and spreadsheet-heavy operations are where process knowledge is most invisible and most at risk.</strong> It lives in people's heads, in email chains, in tabs nobody else can read. When those people leave, the knowledge leaves with them.</p>
+          <p>Atomiqs captures how work actually runs regardless of the tools underneath — whether that's a formal ERP, a set of Excel files, Teams channels, or a mix of all three. We surface the process, structure it, assign ownership, and make it something your organisation can govern, improve, and hand off — without needing to replace a single tool you currently use.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-cta">
+  <div class="cta-inner">
+    <div class="cta-eyebrow fade-up d1">Get started</div>
+    <h2 class="cta-title fade-up d2">Pick one process.<br>See what it actually looks like.</h2>
+    <p class="cta-sub fade-up d3">Two weeks. One process. A live digital twin of design vs reality — with benchmark, ownership, and change impact mapped. No commitment beyond that.</p>
+    <div class="cta-actions fade-up d4">
+      <a class="btn-primary" href="#contact">Book your two-week pilot</a>
+      <a class="btn-secondary" href="https://atomiqs.ai" target="_blank" rel="noopener">Visit atomiqs.ai</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="section-contact" id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="section-eyebrow fade-up d1">Contact</div>
+        <h3 class="fade-up d2">Let's talk about<br>your processes</h3>
+        <p class="fade-up d3">Whether you're running a major programme, exploring AI deployment, or just curious about where your process reality diverges from design — we'd love to show you.</p>
+        <div class="contact-detail fade-up d4">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+          <a href="https://atomiqs.ai" target="_blank" rel="noopener">atomiqs.ai</a>
+        </div>
+      </div>
+
+      <div class="fade-up d3">
+        <div class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First name</label>
+              <input class="form-input" type="text" id="firstName" placeholder="Jane" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last name</label>
+              <input class="form-input" type="text" id="lastName" placeholder="Smith" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Work email</label>
+            <input class="form-input" type="email" id="email" placeholder="jane@company.com" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company</label>
+            <input class="form-input" type="text" id="company" placeholder="Acme Corp"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">I'm interested in</label>
+            <select class="form-select" id="interest">
+              <option value="">Select an option…</option>
+              <option>Two-week process pilot</option>
+              <option>Process transparency &amp; discovery</option>
+              <option>Change impact &amp; validation</option>
+              <option>AI / copilot context layer</option>
+              <option>General enquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" id="message" placeholder="Tell us about your current challenge or the process you'd like to start with…"></textarea>
+          </div>
+          <button class="form-submit" onclick="submitForm()">Send message →</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <h4>Message sent</h4>
+          <p>Thank you for reaching out. We'll be in touch within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <svg viewBox="0 0 220 52" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50,18 C45,10 30,2 20,2 C8,2 2,12 2,26 C2,40 8,50 20,50 C30,50 45,38 50,34 Z"
+              fill="rgba(29,184,126,.10)" stroke="#1DB87E" stroke-width="1.2"/>
+        <path d="M50,18 C55,10 70,2 80,2 C92,2 98,12 98,26 C98,40 92,50 80,50 C70,50 55,38 50,34 Z"
+              fill="rgba(59,143,232,.10)" stroke="#3B8FE8" stroke-width="1.2"/>
+        <ellipse cx="50" cy="26" rx="9" ry="13" fill="rgba(123,114,216,.18)" stroke="#7B72D8" stroke-width="1.2"/>
+        <ellipse cx="24"  cy="26" rx="16" ry="14" fill="rgba(11,17,32,.85)"/>
+        <ellipse cx="76" cy="26" rx="16" ry="14" fill="rgba(11,17,32,.85)"/>
+        <text x="108" y="25" font-family="Georgia,serif" font-size="18" font-weight="400"
+              fill="rgba(255,255,255,.7)" letter-spacing="0.3">atomiqs.ai</text>
+        <text x="109" y="40" font-family="Georgia,serif" font-size="7" font-weight="400"
+              font-style="italic" fill="rgba(255,255,255,.25)" letter-spacing="1">Atomiq core of enterprise intelligence</text>
+      </svg>
+    </div>
+    <div class="footer-links">
+      <a href="#challenge">Challenge</a>
+      <a href="#solution">Solution</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="#contact">Contact</a>
+      <a href="https://atomiqs.ai" target="_blank" rel="noopener">atomiqs.ai ↗</a>
+    </div>
+    <div class="footer-copy">© 2026 Atomiqs.AI · All rights reserved</div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Contact form — swap for Formspree / EmailJS endpoint when ready
+function submitForm(){
+  const firstName = document.getElementById('firstName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if(!firstName || !email){
+    alert('Please fill in your name and email address.');
+    return;
+  }
+  // ── FORMSPREE — submissions delivered to admin@myvyoma.io ────────────────
+  // One-time setup (2 minutes):
+  //   1. Go to https://formspree.io and sign up / log in
+  //   2. Create a new form → set the email to admin@myvyoma.io
+  //   3. Copy the form ID (e.g. "xabcdefg") and replace YOUR_FORM_ID below
+  //   4. Save — done. All submissions will arrive at admin@myvyoma.io
+  // ─────────────────────────────────────────────────────────────────────────
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // ← replace YOUR_FORM_ID
+
+  fetch(FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name:     firstName + ' ' + document.getElementById('lastName').value.trim(),
+      email:    email,
+      company:  document.getElementById('company').value.trim(),
+      interest: document.getElementById('interest').value,
+      message:  document.getElementById('message').value.trim(),
+      _replyto: email,
+      _subject: 'New enquiry from atomiqs.ai — ' + (document.getElementById('company').value.trim() || firstName)
+    })
+  })
+  .then(r => {
+    if(r.ok){ showSuccess(); }
+    else { alert('Something went wrong. Please email us directly at admin@myvyoma.io'); }
+  })
+  .catch(() => alert('Network error. Please email us directly at admin@myvyoma.io'));
+}
+
+function showSuccess(){
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+// FAQ accordion
+function toggleFaq(el){
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    if(target){
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({top, behavior:'smooth'});
+    }
+  });
+});
+
+// Intersection observer for fade-up on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.animationPlayState = 'running';
+      observer.unobserve(e.target);
+    }
+  });
+}, {threshold:.12});
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  el.style.animationPlayState = 'paused';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
